@@ -1,11 +1,17 @@
 # anycubic-kobra-2-pro-thermal-drift-fix
 Custom Start G-Code for Anycubic Kobra 2 Pro to solve inconsistent Z-offset issues by cooling down inductive sensor before printing starts. 
-New Update: Added a hardware-assisted calibration method (the "Tape Hack") to improve bed auto-leveling results and test models to verify Z-offset consistency across the entire bed.
+**Update:** Added a hardware-assisted calibration method (the "Tape Hack") to improve bed auto-leveling results and test models to verify Z-offset consistency across the entire bed.
 
 
 ## Problem
-1) During printing, the inductive sensor gets overheated by the bed and the nozzle. This causes the sensor to trigger "too high" (too early), resulting in a failed first layer if the sensor is not cooled down before the next print. This is especially critical when restarting a print immediately after a previous one.
-2) The same 
+### 1. Inconsistent Z-Offset on Restarts
+During a print, the sensor gets overheated by the heat rising from the bed and the nozzle. If you start a new print immediately after the previous one, the sensor is still hot. A hot sensor triggers "too high" (too early), causing the nozzle to stay too far from the bed. This results in poor adhesion or printing in the air.
+### 2. Distorted Bed Mesh during Auto-Leveling
+The same phenomenon affects the auto-calibration process. As the probe moves through its 25 points, it stays near the heated bed for several minutes.
+    The sensor starts the calibration "cool" at point #1.
+    By the time it reaches the last point, it has absorbed significant heat.
+    Because the sensor triggers earlier as it gets warmer, the printer misinterprets this as the bed being "higher" at the end of the path.
+This creates a false "warped" mesh in the printer's memory, even if your bed is actually flat, and may affect the adhesion of the first layer.
 
 
 ## Solution
