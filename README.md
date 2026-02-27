@@ -45,3 +45,6 @@ The print head has a "secret" internal vent designed to cool the inductive senso
 4. **Remove Tape:** Once finished, remove the tape, adjust Z-offset and print tests.
 
 *This may allow you to use the entire bed surface with a single, consistent Z-offset.*
+
+## Acknowledgements
+This project was developed in collaboration with Gemini (AI), which assisted in technical analysis of thermal drift and G-code optimization. 
