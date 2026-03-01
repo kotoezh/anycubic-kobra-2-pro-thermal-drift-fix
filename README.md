@@ -1,5 +1,6 @@
 # anycubic-kobra-2-pro-thermal-drift-fix
 Custom Start G-Code for Anycubic Kobra 2 Pro to solve inconsistent Z-offset issues by cooling down inductive sensor before printing starts.
+
 **Update:** Added a hardware-assisted calibration method (the "Tape Hack") to improve bed auto-leveling results and test models to verify Z-offset consistency across the entire bed.
 
 
@@ -18,6 +19,7 @@ This creates a false "warped" mesh in the printer's memory, even if your bed is 
 This script implements a "Cold Probe" strategy: it actively cools the sensor at 100mm height before homing, ensuring a stable and repeatable Z-offset regardless of machine temperature.
 The base start machine G-Code script is inherited from Anycubic Slicer Next 1.3.6.1 settings for Kobra 2 Pro
 Added lines are marked with (+) so you can try implementing this strategy in any other start G-Code
+
 **NB** This solution was physically tested only on the Kobra 2 Pro.
 
 ## How to use
@@ -45,6 +47,7 @@ While I have prepared G-code versions for the entire Kobra 2 series (Neo, Pro, P
 1. This solution was physically tested only on the Kobra 2 Pro.
 2. The versions for Neo, Plus, and Max are provided as-is, based on verified factory start G-code logic. 
 3. Use these scripts at your own risk. Always monitor your printer during the first run of a new G-code.
+4. G-code in '/models' folder are sliced for Kobra 2 Pro, for printing PETG with bed 75C and nozzle 235C. Don't run them on incompatible machine/filament
 
 ## Improved Auto-Leveling Method (The "Tape Hack")
 Through testing, I discovered that the standard Auto-Leveling process on the Kobra 2 series also suffers from **cumulative sensor heating**. As the probe moves from point 1 (bottom-left) to point 25 (top-right), it stays close to the heated bed and gradually warms up. This causes the sensor to trigger higher towards the top right corner and is misinterpreted as a higher plate there, even if the plate is totally flat. This may results in an inaccurate "warped" mesh and inconsistent first layer across the plate.
