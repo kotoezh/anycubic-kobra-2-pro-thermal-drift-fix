@@ -1,5 +1,5 @@
 # anycubic-kobra-2-pro-thermal-drift-fix
-Custom Start G-Code for Anycubic Kobra 2 Pro to solve inconsistent Z-offset issues by cooling down inductive sensor before printing starts. 
+Custom Start G-Code for Anycubic Kobra 2 Pro to solve inconsistent Z-offset issues by cooling down inductive sensor before printing starts.
 **Update:** Added a hardware-assisted calibration method (the "Tape Hack") to improve bed auto-leveling results and test models to verify Z-offset consistency across the entire bed.
 
 
@@ -18,6 +18,7 @@ This creates a false "warped" mesh in the printer's memory, even if your bed is 
 This script implements a "Cold Probe" strategy: it actively cools the sensor at 100mm height before homing, ensuring a stable and repeatable Z-offset regardless of machine temperature.
 The base start machine G-Code script is inherited from Anycubic Slicer Next 1.3.6.1 settings for Kobra 2 Pro
 Added lines are marked with (+) so you can try implementing this strategy in any other start G-Code
+**NB** This solution was physically tested only on the Kobra 2 Pro.
 
 ## How to use
 
@@ -26,7 +27,7 @@ If you are using **Anycubic Slicer Next** (or Orca Slicer), follow these steps:
 1. Open your slicer and go to **Printer Settings**.
 2. Navigate to the **Machine G-code** tab.
 3. Locate the **Machine start G-code** field.
-4. Delete the existing code and paste the content of [anycubic kobra 2 pro start machine.gcode](https://github.com/kotoezh/anycubic-kobra-2-pro-thermal-drift-fix/blob/main/anycubic%20kobra%202%20pro%20start%20machine.gcode) from this repository.
+4. Delete the existing code and paste the content of gcode file for your machine (kobra 2 pro, kobra 2/2 neo, kobra 2 max, kobra 2 plus)
 5. **Important:** Run a test print and re-calibrate your Z-offset once. Since the homing is now "cold", your previous "hot" Z-offset value may be incorrect.
 
 ### Option 2: Manual Modification
@@ -38,6 +39,12 @@ If you have a custom start G-code and want to keep it:
 ## Safety Note
 Always stay near the printer during the first run after applying this G-code. Ensure the Z-offset is adjusted correctly to prevent the nozzle from touching the print bed.
 
+## Disclaimer & Compatibility
+
+While I have prepared G-code versions for the entire Kobra 2 series (Neo, Pro, Plus, Max) based on their official factory profiles from Anycubic Slicer Next 1.3.6.1, please note:
+1. This solution was physically tested only on the Kobra 2 Pro.
+2. The versions for Neo, Plus, and Max are provided as-is, based on verified factory start G-code logic. 
+3. Use these scripts at your own risk. Always monitor your printer during the first run of a new G-code.
 
 ## Improved Auto-Leveling Method (The "Tape Hack")
 Through testing, I discovered that the standard Auto-Leveling process on the Kobra 2 series also suffers from **cumulative sensor heating**. As the probe moves from point 1 (bottom-left) to point 25 (top-right), it stays close to the heated bed and gradually warms up. This causes the sensor to trigger higher towards the top right corner and is misinterpreted as a higher plate there, even if the plate is totally flat. This may results in an inaccurate "warped" mesh and inconsistent first layer across the plate.
