@@ -47,7 +47,7 @@ While I have prepared G-code versions for the entire Kobra 2 series (Neo, Pro, P
 1. This solution was physically tested only on the Kobra 2 Pro.
 2. The versions for Neo, Plus, and Max are provided as-is, based on verified factory start G-code logic. 
 3. Use these scripts at your own risk. Always monitor your printer during the first run of a new G-code.
-4. G-code in '/models' folder are sliced for Kobra 2 Pro, for printing PETG with bed 75C and nozzle 235C. Don't run them on incompatible machine/filament
+4. G-code in `/models` folder are sliced for Kobra 2 Pro, for printing PETG with bed 75C and nozzle 235C. Don't run them on incompatible machine/filament
 
 ## Improved Auto-Leveling Method (The "Tape Hack")
 Through testing, I discovered that the standard Auto-Leveling process on the Kobra 2 series also suffers from **cumulative sensor heating**. As the probe moves from point 1 (bottom-left) to point 25 (top-right), it stays close to the heated bed and gradually warms up. This causes the sensor to trigger higher towards the top right corner and is misinterpreted as a higher plate there, even if the plate is totally flat. This may results in an inaccurate "warped" mesh and inconsistent first layer across the plate.
